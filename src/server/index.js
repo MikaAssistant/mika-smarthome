@@ -26,32 +26,9 @@ server.use('/', routes);
 server.use('/devices', devices);
 
 
-
 //MONGO DB
-db.on('open', function () {
-    console.log('MongoDB is connected');
-});
-
 db.on('error', function () {
     console.log('Ops! Something went wrong, mongoDB is broken');
 });
-
-let company = mongoose.Schema({
-    name: String
-});
-
-let Company = mongoose.model('Company', company);
-
-Company.create({
-    name: 'Company 1'
-}, function (err, company) {
-    if(err) {
-        console.log('error')
-        return
-    }
-
-    console.log('Created -> ', company)
-});
-
 
 module.exports = http;

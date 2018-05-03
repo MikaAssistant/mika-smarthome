@@ -20,12 +20,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Usuários
-                <small>Formulário do usuário</small>
+                Devices
+                <small>Formulário do Device</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Usuários</li>
+                <li><a href="#"><i class="fa fa-tablet"></i> Home</a></li>
+                <li class="active">Devices</li>
             </ol>
         </section>
 
@@ -33,29 +33,74 @@
             <div class="row">
                 <div class="col-lg-12 col-xs-12">
                     <div class="box box-primary">
-                        <form action="/users/create" method="post">
+                        <form action="/devices/create" method="post">
                             <div class="box-body">
-                                <div class="form-group">
-                                    <label>Nome Completo</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Coloque o seu Nome Completo">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>ID</label>
+                                            <input type="text" name="id" class="form-control" placeholder="as4d5asd4a245sd">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Login</label>
-                                    <input type="text" name="login" class="form-control" placeholder="Coloque o seu E-mail">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input type="text" id="name" name="name" class="form-control" placeholder="lampada do quarto">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Senha</label>
-                                    <input type="password" name="password" class="form-control" placeholder="Sua Senha">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <input type="text" id="address" name="address" class="form-control" placeholder="192.168.1.1">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Port</label>
+                                            <input type="text" id="port" name="port" class="form-control" placeholder="554422">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>location</label>
+                                            <input type="text" id="location" name="location" class="form-control" placeholder="quarto">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                                <button type="submit" data-toggle="modal" data-target="#modal-scan" class="btn btn-info pull-right">Procurar Devices</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- Modal -->
+        <div class="modal fade" id="modal-scan">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Localizar Devices</h4>
+                    </div>
+                    <div class="modal-body">
+                        <center><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i><br>Localizando...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Usar esse Devices</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <% include ../partials/main-footer.ejs %>
 </div>

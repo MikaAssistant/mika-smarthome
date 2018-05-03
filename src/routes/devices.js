@@ -39,6 +39,23 @@ router.post('/create',async (req,res) => {
         });
     }catch(error) {
         console.log(error);
+        res.redirect('/');
+    }
+});
+
+router.post('/delete',async (req,res) => {
+    let { id } = req.body;
+    try{
+        Device.findOneAndRemove({
+            _id: id
+        }, function (err) {
+            if(err) {
+                return;
+            }
+            res.redirect('/devices');
+        });
+    }catch(error) {
+        console.log(error);
         res.redirect('/login');
     }
 });

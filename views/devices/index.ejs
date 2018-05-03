@@ -40,8 +40,11 @@
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="info-box">
                         <span class="info-box-icon bg-green"><i class="fa fa-tablet"></i></span>
-
                         <div class="info-box-content">
+                            <form action="/devices/delete" method="post" class="pull-right" style="margin: 0; padding: 0;">
+                                <input type="hidden" name="id" value="<%= devices[i]._id %>">
+                                <button class="btn btn-sm btn-danger" title="Remover Device"><i class="fa fa-trash"></i></button>
+                            </form>
                             <span class="info-box-text" style="font-weight: bold"><%= devices[i].name %></span>
                             <span class="info-box-text" style="font-size: 12px;">ID: <%= devices[i].id %></span>
                             <span class="info-box-text" style="font-size: 12px;">Address: <%= devices[i].address %></span>

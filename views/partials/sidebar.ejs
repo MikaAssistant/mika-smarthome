@@ -1,0 +1,25 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">MENU PRINCIPAL</li>
+
+            <!--DASHBOARD-->
+            <% if( locals.path === '/dashboard' ){ %>
+            <li class="active"><a href="/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <% }else{ %>
+            <li><a href="/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <% } %>
+
+            <!--WEBHOOK-->
+            <% if( locals.path === '/devices' ){ %>
+                <li class="active"><a href="/devices"><i class="fa fa-tablet"></i> <span>Devices</span></a></li>
+            <% }else{ %>
+                <li><a href="/devices"><i class="fa fa-tablet"></i> <span>Devices</span></a></li>
+            <% } %>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

@@ -31,11 +31,11 @@ router.post('/create',async (req,res) => {
             address: address,
             port: port,
             location: location
-            }, function (err, device) {
-                if(err) {
-                    return;
-                }
-                res.redirect('/devices');
+        }, function (err, device) {
+            if(err) {
+                return;
+            }
+            res.redirect('/devices');
         });
     }catch(error) {
         console.log(error);

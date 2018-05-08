@@ -4,7 +4,7 @@
   "description": "Interface web para smart home da assistente Mika",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "install": "cp .env.example .env"
   },
   "author": "Diogo Bemfica",

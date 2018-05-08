@@ -5,10 +5,6 @@ let Device = mongoose.Schema({
         type: String,
         required: true
     },
-    device: {
-        type: String,
-        required: true
-    },
     name: {
         type: String,
         required: true
@@ -19,6 +15,10 @@ let Device = mongoose.Schema({
     },
     port: {
         type: Number,
+        required: true
+    },
+    type: {
+        type: String,
         required: true
     },
     location: {

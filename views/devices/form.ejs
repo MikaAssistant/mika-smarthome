@@ -46,14 +46,6 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Device</label>
-                                            <input type="text" id="device" name="device" class="form-control" placeholder="lampada">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
                                             <label>Name</label>
                                             <input type="text" id="name" name="name" class="form-control" placeholder="lampada do quarto">
                                         </div>
@@ -76,6 +68,14 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <label>Device</label>
+                                            <input type="text" id="device" name="device" class="form-control" placeholder="lampada">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
                                             <label>location</label>
                                             <input type="text" id="location" name="location" class="form-control" placeholder="quarto">
                                         </div>
@@ -84,7 +84,7 @@
                             </div>
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                                <button type="submit" data-toggle="modal" data-target="#modal-scan" class="btn btn-info pull-right">Procurar Devices</button>
+                                <button type="button" id="btn-procurar-devices" data-toggle="modal" data-target="#modal-scan" class="btn btn-info pull-right">Procurar Devices</button>
                             </div>
                         </form>
                     </div>
@@ -114,5 +114,20 @@
 </div>
 </div>
 <% include ../partials/footer %>
+<script>
+    $(document).ready(function(){
+        // let socket = io('http://localhost:5000');
+        // $("#btn-procurar-devices").click(function(){
+        //     let comand = {
+        //         action: 'scan_lampada',
+        //         parameters: {}
+        //     }
+        //     socket.emit('mika-kernel',comand);
+        // });
+        // socket.on('client',function(comand){
+        //     console.log(comand)
+        // });
+    })
+</script>
 </body>
 </html>

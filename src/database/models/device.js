@@ -16,7 +16,7 @@ let Device = mongoose.Schema({
     type: {
         type: String
     },
-    location: {
+    group: {
         type: String
     }
 });

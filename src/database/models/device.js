@@ -2,28 +2,22 @@ const mongoose = require('mongoose');
 
 let Device = mongoose.Schema({
     id: {
-        type: String,
-        required: true
+        type: String
     },
     name: {
-        type: String,
-        required: true
+        type: String
     },
     address: {
-        type: String,
-        required: true
+        type: String
     },
     port: {
-        type: Number,
-        required: true
+        type: Number
     },
     type: {
-        type: String,
-        required: true
+        type: String
     },
     location: {
-        type: String,
-        required: true
+        type: String
     }
 });
 

@@ -23,14 +23,14 @@ router.get('/form',async (req,res) => {
 });
 
 router.post('/create',async (req,res) => {
-    let { id, name, address, port, location } = req.body;
+    let { id, name, address, port, group } = req.body;
     try{
         Device.create({
             id: id,
             name: name,
             address: address,
             port: port,
-            location: location
+            group: group
         }, function (err, device) {
             if(err) {
                 return;

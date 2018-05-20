@@ -1,16 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const Device = require('./../database/models/device');
+const db = require(__dirname+"/../../config/database");
 
 router.get('/',async (req,res) => {
     try{
-        Device.find({}, function (err, devices) {
-            if(err) {
-                return;
-            }
-            res.render('devices/index',{
-                devices: devices
-            });
+        let devices = db.get('devices').value();
+        res.render('devices/index',{
+            devices: devices
         });
     }catch(error) {
         console.log(error);
@@ -25,18 +21,15 @@ router.get('/form',async (req,res) => {
 router.post('/create',async (req,res) => {
     let { id, name, address, port, group } = req.body;
     try{
-        Device.create({
+        db.get('devices')
+        .push({
             id: id,
             name: name,
             address: address,
             port: port,
             group: group
-        }, function (err, device) {
-            if(err) {
-                return;
-            }
-            res.redirect('/devices');
-        });
+        }).write();
+        res.redirect('/devices');
     }catch(error) {
         console.log(error);
         res.redirect('/');
@@ -46,14 +39,8 @@ router.post('/create',async (req,res) => {
 router.post('/delete',async (req,res) => {
     let { id } = req.body;
     try{
-        Device.findOneAndRemove({
-            _id: id
-        }, function (err) {
-            if(err) {
-                return;
-            }
-            res.redirect('/devices');
-        });
+        db.get('devices').remove({ id: id }).write()
+        res.redirect('/devices');
     }catch(error) {
         console.log(error);
         res.redirect('/login');

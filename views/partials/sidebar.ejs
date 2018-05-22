@@ -21,7 +21,7 @@
             <% } %>
 
             <!--Settings-->
-            <% if( locals.path === '/settings' || locals.path === '/settings/dialogflow' ){ %>
+            <% if( locals.path === '/settings' || locals.path === '/settings/dialogflow' || locals.path === '/settings/hgweather' ){ %>
                 <li class="active treeview menu-open">
             <% }else{ %>
                 <li class="treeview">
@@ -37,6 +37,11 @@
                         <li class="active"><a href="/settings/dialogflow"><i class="fa fa-comment-o"></i> Dialogflow</a></li>
                     <% }else{ %>
                         <li><a href="/settings/dialogflow"><i class="fa fa-comment-o"></i> Dialogflow</a></li>
+                    <% } %>
+                    <% if( locals.path === '/settings/hgweather' ){ %>
+                        <li class="active"><a href="/settings/hgweather"><i class="fa fa-cloud"></i> Hg Weather</a></li>
+                    <% }else{ %>
+                        <li><a href="/settings/hgweather"><i class="fa fa-cloud"></i> Hg Weather</a></li>
                     <% } %>
                 </ul>
             </li>

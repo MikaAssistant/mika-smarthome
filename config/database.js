@@ -5,6 +5,6 @@ const adapter = new FileSync('./src/database/db.json');
 const db = low(adapter);
 
 // Set some defaults (required if your JSON file is empty)
-db.defaults({ devices: [], settings: { dialogflow: {}} }).write()
+db.defaults({ devices: [], settings: { dialogflow: {}, hgweather: {}} }).write()
 
 module.exports = db;

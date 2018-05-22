@@ -25,4 +25,27 @@ router.post('/dialogflow',async (req,res) => {
     }
 });
 
+router.get('/hgweather',async (req,res) => {
+    try{
+        let hgweather = db.get('settings.hgweather').value();
+        res.render('settings/hgweather',{
+            hgweather: hgweather
+        });
+    }catch(error) {
+        console.log(error);
+        res.redirect('/');
+    }
+});
+
+router.post('/hgweather',async (req,res) => {
+    let { api_key } = req.body;
+    try{
+        db.set('settings.hgweather.api_key', api_key).write();
+        res.redirect('/settings/hgweather');
+    }catch(error) {
+        console.log(error);
+        res.redirect('/');
+    }
+});
+
 module.exports = router;

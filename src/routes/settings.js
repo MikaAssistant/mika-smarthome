@@ -38,9 +38,11 @@ router.get('/hgweather',async (req,res) => {
 });
 
 router.post('/hgweather',async (req,res) => {
-    let { api_key } = req.body;
+    let { api_key, latitude, longitude } = req.body;
     try{
         db.set('settings.hgweather.api_key', api_key).write();
+        db.set('settings.hgweather.latitude', latitude).write();
+        db.set('settings.hgweather.longitude', longitude).write();
         res.redirect('/settings/hgweather');
     }catch(error) {
         console.log(error);

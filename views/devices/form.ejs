@@ -2,7 +2,7 @@
 <html>
 <head>
     <% include ../partials/head %>
-    <title>DOckerger</title>
+    <title>Device Form</title>
 </head>
 <body>
 </head>
@@ -101,10 +101,22 @@
                         <h4 class="modal-title">Localizar Devices</h4>
                     </div>
                     <div class="modal-body">
-                        <center><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i><br>Localizando...
+                        <center id="loading"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i><br>Localizando...</center>
+                        <table id="table_device" class="table table-bordered table-striped" style="display: none;">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Address</th>
+                                <th>Port</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Usar esse Devices</button>
+                        <button id="btn_select_device" type="submit" class="btn btn-primary">Usar esse Devices</button>
                     </div>
                 </div>
             </div>
@@ -114,19 +126,40 @@
 </div>
 </div>
 <% include ../partials/footer %>
+<script src="/socket.io/socket.io.js"></script>
 <script>
     $(document).ready(function(){
-        // let socket = io('http://localhost:5000');
-        // $("#btn-procurar-devices").click(function(){
-        //     let comand = {
-        //         action: 'scan_lampada',
-        //         parameters: {}
-        //     }
-        //     socket.emit('mika-kernel',comand);
-        // });
-        // socket.on('client',function(comand){
-        //     console.log(comand)
-        // });
+        let body = null;
+        let socket = io('http://localhost:4000');
+        $("#btn-procurar-devices").click(function(){
+            let table = $("#table_device");
+            table.find('tbody').empty();
+            table.hide();
+            $("#loading").show();
+            let request = {
+                target: 'smarthome',
+                action: 'scannerDevice',
+                parameters: {}
+            }
+            socket.emit('kernel',request);
+        });
+        socket.on('smarthome',function(response){
+            let table = $("#table_device");
+            $("#loading").hide();
+            body = response.body;
+            for(let i = 0; i < body.length; i++){
+                let html = '<tr><td>'+body[i].id+'</td><td>'+body[i].address+'</td><td>'+body[i].port+'</td><td><input name="device" class="input_deivces" type="radio" value="'+i+'"></td></tr>';
+                table.find('tbody').append(html);
+            }
+            table.show();
+        });
+        $("body").on("click","#btn_select_device",function(){
+            let i = $(".input_deivces:checked").val();
+            $("input[name='id']").val(body[i].id)
+            $("input[name='address']").val(body[i].address)
+            $("input[name='port']").val(body[i].port)
+            $('#modal-scan').modal('hide');
+        })
     })
 </script>
 </body>

@@ -130,7 +130,14 @@
 <script>
     $(document).ready(function(){
         let body = null;
-        let socket = io('http://localhost:4000');
+
+        let socketLocal = io();
+        let socketClient = null;
+        socketLocal.on('loadEnv',function(e){
+            let host = 'http://' + e.ROUTER_HOST + ':' + e.ROUTER_PORT
+            socketClient = io(host);
+        });
+
         $("#btn-procurar-devices").click(function(){
             let table = $("#table_device");
             table.find('tbody').empty();
@@ -141,18 +148,21 @@
                 action: 'scannerDevice',
                 parameters: {}
             }
-            socket.emit('kernel',request);
+            socketClient.emit('kernel',request);
+
+            socketClient.on('smarthome',function(response){
+                let table = $("#table_device");
+                $("#loading").hide();
+                body = response.body;
+                for(let i = 0; i < body.length; i++){
+                    let html = '<tr><td>'+body[i].id+'</td><td>'+body[i].address+'</td><td>'+body[i].port+'</td><td><input name="device" class="input_deivces" type="radio" value="'+i+'"></td></tr>';
+                    table.find('tbody').append(html);
+                }
+                table.show();
+            });
         });
-        socket.on('smarthome',function(response){
-            let table = $("#table_device");
-            $("#loading").hide();
-            body = response.body;
-            for(let i = 0; i < body.length; i++){
-                let html = '<tr><td>'+body[i].id+'</td><td>'+body[i].address+'</td><td>'+body[i].port+'</td><td><input name="device" class="input_deivces" type="radio" value="'+i+'"></td></tr>';
-                table.find('tbody').append(html);
-            }
-            table.show();
-        });
+
+
         $("body").on("click","#btn_select_device",function(){
             let i = $(".input_deivces:checked").val();
             $("input[name='id']").val(body[i].id)

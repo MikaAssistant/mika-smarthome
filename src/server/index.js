@@ -26,7 +26,12 @@ server.locals.assets;
 server.use(function(req,res,next){
     server.locals.path = req.path;
     next();
-})
+});
+
+//SOCKET.IO
+io.on('connection', function(socket){
+    socket.emit('loadEnv',env);
+});
 
 server.use('/', routes);
 server.use('/devices', devices);
